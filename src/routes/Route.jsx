@@ -3,15 +3,40 @@ import Home from "../pages/Home";
 import RootLayout from "../layouts/RootLayout";
 import SignUp from "../pages/SignUp";
 import Login from "../pages/Login";
+import ProtectedRoute from "./ProtectedRoute";
+import PublicRoute from "./PublicRoute";
+
+
 
 const router = createBrowserRouter([
   {
     path: "/",
     Component: RootLayout,
     children: [
-      { index: true, Component: Home },
-      { path: "sign-up", Component: SignUp },
-      { path: "login", Component: Login },
+      {
+        index: true,
+        element: (
+          <ProtectedRoute>
+            <Home />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "sign-up",
+        element: (
+          <PublicRoute>
+            <SignUp />
+          </PublicRoute>
+        ),
+      },
+      {
+        path: "login",
+        element: (
+          <PublicRoute>
+            <Login />
+          </PublicRoute>
+        ),
+      },
     ],
   },
 ]);

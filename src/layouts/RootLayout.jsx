@@ -1,12 +1,14 @@
 import { Outlet } from "react-router";
 import React from "react";
+import Navbar from "../components/Navbar";
 
 const RootLayout = () => {
   return (
-    <div>
-      <div>this is heading </div>
-      <Outlet/>
-      <div>this is footer</div>
+    <div className="h-[100vh] flex flex-col">
+      <Navbar />
+      <div className="flex-1 ">
+        <Outlet />
+      </div>
     </div>
   );
 };
