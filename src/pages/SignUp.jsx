@@ -6,6 +6,8 @@ import Logo from "../components/Logo";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import RadioGroup from "../components/ui/RadioGroup";
 import { useAuthStore } from "../store/useAuthStore";
+import singUpImage from "../assets/auth/sign-up.png";
+import { Link } from "react-router-dom";
 
 const SignUp = () => {
   const fData = { fullName: "", email: "", password: "", gender: "" };
@@ -13,7 +15,7 @@ const SignUp = () => {
   const [showPass, setShowPass] = useState(false);
   const { isSigninUp, signUpUser } = useAuthStore();
   const handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     signUpUser(data);
   };
   return (
@@ -78,13 +80,33 @@ const SignUp = () => {
                   setData((prev) => ({ ...prev, gender: value }))
                 }
               />
-              <Button loading={isSigninUp} disabled={isSigninUp} type={"submit"} variant="secondary" className={"w-full"}>
+              <Button
+                loading={isSigninUp}
+                disabled={isSigninUp}
+                type={"submit"}
+                variant="secondary"
+                className={"w-full"}
+              >
                 Sign Up
               </Button>
             </form>
+            <div className="mt-4">
+              <span className="text-sm font-normal">
+                Already have an Account?{" "}
+              </span>
+              <Link to={"/login"} className="underline px-2 ">
+                Login
+              </Link>
+            </div>
           </div>
         </div>
-        <div className="flex-1 hidden lg:flex">fgfrdg</div>
+        <div className="flex-1  hidden lg:flex">
+          <img
+            src={singUpImage}
+            className=" aspect-square max-w-[500px] mx-auto w-full"
+            alt="sign-up"
+          />
+        </div>
       </div>
     </Container>
   );
